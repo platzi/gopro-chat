@@ -1,0 +1,7 @@
+development:
+    driver: postgres
+    open: user=platzi dbname=platzi password=platzi sslmode=disable host=10.2.2.205
+
+dev:
+    driver: postgres
+    open: user=platzi dbname=platzi password=platzi sslmode=disable host=10.2.2.205
