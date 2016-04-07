@@ -14,16 +14,16 @@ func (c App) Index() revel.Result {
 	return c.Render(user)
 }
 
-func (c App) Platzi(user, action string) revel.Result {
+func (c App) Platzi(user, messageType string) revel.Result {
 	c.Validation.Required(user)
-	c.Validation.Required(action)
+	c.Validation.Required(messageType)
 
 	if c.Validation.HasErrors() {
-		c.Flash.Error("El usuario no ha sido ingresado")
+		c.Flash.Error("Falta algún parámetro")
 		return c.Redirect(App.Index)
 	}
 
-	switch action {
+	switch messageType {
 	case "refresh":
 		return c.Redirect("/refresh?user=%s", user)
 	case "polling":

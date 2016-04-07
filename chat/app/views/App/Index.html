@@ -23,8 +23,14 @@
             <input type="text" name="user" id="user">
           </p>
           <p>
-            <label for="pass">Elige el nick</label>
-            <input type="text" name="pass" id="pass">
+            <label for="user">Tipo de Sincronización</label>
+            <select name="messageType" id="messageType">
+              <option></option>
+              <option value="refresh">Refresh</option>
+              <option value="polling">Polling</option>
+              <option value="websocket">WebSocket</option>
+            </select>
+
           </p>
           <input type="submit" id="enviar" value="Ingresar">
         </form>
