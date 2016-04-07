@@ -7,6 +7,16 @@ module:testrunner
 GET     /                                       App.Index
 GET     /platzi                                 App.Platzi
 
+GET     /refresh                        Refresh.Index
+GET     /refresh/room                   Refresh.Room
+GET     /refresh/say                    Refresh.Say
+GET     /refresh/leave                  Refresh.Leave
+
+GET     /polling/room                        Polling.Room
+GET     /polling/room/messages               Polling.WaitMessages
+POST    /polling/room/messages               Polling.Say
+GET     /polling/room/leave                  Polling.Leave
+
 # Ignore favicon requests
 GET     /favicon.ico                            404
 

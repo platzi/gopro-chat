@@ -1,11 +1,11 @@
-{{set . "title" "Home"}}
+{{set . "title" "Ingreso"}}
 {{template "header.html" .}}
 
-<header class="hero-unit" style="background-color:#A9F16C">
+<header class="hero-unit" style="background-color:blue">
   <div class="container">
     <div class="row">
-      <div class="hero-text">
-        <h1>Hola mundo!!</h1>
+      <div class="text-info">
+        <h1>Bienvenido {{.user}} a Platzi Chat</h1>
         <p></p>
       </div>
     </div>
@@ -15,7 +15,20 @@
 <div class="container">
   <div class="row">
     <div class="span6">
-      {{template "flash.html" .}}
+      <div id="singin">
+        <form action="{{url "App.Platzi" }}">
+          {{template "flash.html" .}}
+          <p>
+            <label for="user">Elige el nick</label>
+            <input type="text" name="user" id="user">
+          </p>
+          <p>
+            <label for="pass">Elige el nick</label>
+            <input type="text" name="pass" id="pass">
+          </p>
+          <input type="submit" id="enviar" value="Ingresar">
+        </form>
+      </div>
     </div>
   </div>
 </div>

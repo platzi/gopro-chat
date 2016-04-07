@@ -1,0 +1,22 @@
+{{set . "title" "Chat"}}
+{{template "header.html" .}}
+
+<h1>Estás chateando como {{.user}}</h1>
+<a href="/polling/room/leave?user={{.user}}" >Dejar el chat</a>
+
+<div id="thread">
+  <script type="text/html" id="message_tmpl">
+    <% if(event.Type == 'message') { %>
+       <div class="message <%= event.User == '{{.user}}' ? 'tu': '' %>">
+         <h2><%= event.User %></h2>
+         <p><%= event.Text %></p>
+      </div>
+    <% } %>
+  </script>
+
+</div>
+
+<div id="newMessage">
+  <input type="text" autocomplete="off" autofocus/>
+  <input type="submit" value="Enviar" name="send" id="send"/>
+</div>

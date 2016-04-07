@@ -2,7 +2,7 @@ package controllers
 
 import (
 	"github.com/revel/revel"
-	"platzi/chat/app/models"
+	//	 "platzi/chat/app/models"
 )
 
 type App struct {
@@ -10,16 +10,25 @@ type App struct {
 }
 
 func (c App) Index() revel.Result {
-	var user = models.User{
-		Username: "Romi",
-		Email:    "romi@iver.mx",
-		Password: "hola",
-	}
-	revel.INFO.Printf("User %v", user.Username)
-	return c.Render()
+	var user = "Ivan"
+	return c.Render(user)
 }
 
-func (c App) Platzi() revel.Result {
-	revel.INFO.Printf("Dentro de Platzi")
+func (c App) Platzi(user, action string) revel.Result {
+	c.Validation.Required(user)
+	c.Validation.Required(action)
+
+	if c.Validation.HasErrors() {
+		c.Flash.Error("El usuario no ha sido ingresado")
+		return c.Redirect(App.Index)
+	}
+
+	switch action {
+	case "refresh":
+		return c.Redirect("/refresh?user=%s", user)
+	case "polling":
+		return c.Redirect("/polling/room?user=%s", user)
+	}
+
 	return c.Render()
 }
