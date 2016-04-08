@@ -1,75 +1,69 @@
-# Welcome to Revel
+# Bienvenido a Revel
 
-## Getting Started
-
-A high-productivity web framework for the [Go language](http://www.golang.org/).
-
-### Start the web server:
+### Iniciar el servidor web:
 
     revel run myapp
 
-   Run with <tt>--help</tt> for options.
+   Ejecutar <tt>--help</tt> para ver las opciones.
 
-### Go to http://localhost:9000/ and you'll see:
+### Ingresa a http://localhost:9000/ y podrás ver:
 
 "It works"
 
-### Description of Contents
+### Descripción de contenido
 
-The default directory structure of a generated Revel application:
+La estructura por defecto de una aplicación generada con revel:
 
-    myapp               App root
-      app               App sources
-        controllers     App controllers
-          init.go       Interceptor registration
-        models          App domain models
-        routes          Reverse routes (generated code)
-        views           Templates
-      tests             Test suites
-      conf              Configuration files
-        app.conf        Main configuration file
-        routes          Routes definition
-      messages          Message files
-      public            Public assets
-        css             CSS files
-        js              Javascript files
-        images          Image files
+    myapp               Raíz del proyecto
+      app               Contenido de la aplicación
+        controllers     Controladores de la aplicación
+          init.go       Registro de interceptors
+        models          Modelos de la aplicación
+        routes          Rutas (código generado)
+        views           Vistas
+      tests             Directorio de pruebas
+      conf              Archivos de configuración
+        app.conf        Archivo principal de configuración
+        routes          Definición de las rutas
+      messages          Archivos de mensajes
+      public            Recursos publicos
+        css             Archivos CSS
+        js              Archivos javascript
+        images          Archivos de imágenes
 
 app
 
-    The app directory contains the source code and templates for your application.
+    El directorio app contiene el código fuente y plantillas para la aplicación.
 
 conf
 
-    The conf directory contains the application’s configuration files. There are two main configuration files:
+    El directorio conf contiene los archivos de configuración. Hay dos archivos principales:
 
-    * app.conf, the main configuration file for the application, which contains standard configuration parameters
-    * routes, the routes definition file.
+    * app.conf, principal archivo de configuración de la aplicación, el cual contiene los parámetros de la configuración estándar. 
+    * routes, archivo de la definición de rutas.
 
 
 messages
 
-    The messages directory contains all localized message files.
+    Contiene todos los archivos de mensajes -localizados- .
 
 public
 
-    Resources stored in the public directory are static assets that are served directly by the Web server. Typically it is split into three standard sub-directories for images, CSS stylesheets and JavaScript files.
+    Almacena los recursos estáticos que serán servidos directamente por el servidor Web. Tipicamente se dividen en tres directorios: images, css y js.
 
-    The names of these directories may be anything; the developer need only update the routes.
+    El nombre de esos directorios pueden ser cualquier cosa; el desarrollador necesita actualizar las rutas.
 
 test
 
-    Tests are kept in the tests directory. Revel provides a testing framework that makes it easy to write and run functional tests against your application.
+    Directorio para las pruebas. Revel brinda un framework de pruebas que hace más fácil escribir y ejecutar pruebas funcionales de la aplicación.
 
-### Follow the guidelines to start developing your application:
+### Una guía para empezar a desarrollar:
 
-* The README file created within your application.
-* The [Getting Started with Revel](http://revel.github.io/tutorial/index.html).
-* The [Revel guides](http://revel.github.io/manual/index.html).
-* The [Revel sample apps](http://revel.github.io/samples/index.html).
-* The [API documentation](http://revel.github.io/docs/godoc/index.html).
+* [Introducción a Revel](http://revel.github.io/tutorial/index.html).
+* [El manual de Revel](http://revel.github.io/manual/index.html).
+* [Aplicaciones de ejemplo con Revel](http://revel.github.io/samples/index.html).
+* [La documentación del API](http://revel.github.io/docs/godoc/index.html).
 
-## Contributing
-We encourage you to contribute to Revel! Please check out the [Contributing to Revel
-guide](https://github.com/revel/revel/blob/master/CONTRIBUTING.md) for guidelines about how
-to proceed. [Join us](https://groups.google.com/forum/#!forum/revel-framework)!
+## Colabora
+
+Te invitamos a contribuir a Revel, por favor hecha un vistazo a [Guía para colaborar con Revel](https://github.com/nubleer/revel/blob/master/CONTRIBUTING.md) para conocer las normas de colaboración [Join us](https://groups.google.com/forum/#!forum/revel-framework)!
