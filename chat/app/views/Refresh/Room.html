@@ -1,0 +1,63 @@
+{{set . "title" "Platzi chat"}}
+{{template "header.html" .}}
+
+<h1>Mensaje con Refresh</h1>
+<div> Bienvenido {{.user}} <a href="/refresh/room/leave?user={{.user}}">Dejar el chat</a></div>
+
+<div id="thread">
+  {{range .events}}
+    {{if eq .Type "message"}}
+      <div class="message {{if eq .User "Tu"}}Tu{{end}}">
+        <h2>{{.User}}</h2>
+        <p>
+          {{.Text}}
+        </p>
+      </div>
+    {{end}}
+    {{if eq .Type "join"}}
+      <div class="message notice">
+        <h2></h2>
+        <p>
+          {{.User}} se unió al chat
+        </p>
+      </div>
+    {{end}}
+    {{if eq .Type "leave"}}
+      <div class="message notice">
+        <h2></h2>
+        <p>
+          {{.User}} Se unió al chat
+          </p>
+      </div>
+    {{end}}
+  {{end}}
+</div>
+
+<div id="newMessage">
+  <form method="post" action="/refresh/room?user={{.user}}">
+    <input type="text" id="message" name="message" autocomplete="off" autofocus>
+    <input type="submit" value="Enviar" id="send">
+  </form>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+
+  // Scroll the messages panel to the end
+  var scrollDown = function() {
+    $('#thread').scrollTo('max')
+  }
+
+  // Reload the whole messages panel
+  var refresh = function() {
+    $('#thread').load('/refresh/room?user={{.user}} #thread .message', function() {
+      scrollDown()
+    })
+  }
+
+  // Call refresh every 5 seconds
+  setInterval(refresh, 5000)
+
+  scrollDown()
+
+</script>
+{{template "footer.html" .}}

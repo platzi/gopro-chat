@@ -10,8 +10,7 @@ type App struct {
 }
 
 func (c App) Index() revel.Result {
-	var user = "Ivan"
-	return c.Render(user)
+	return c.Render()
 }
 
 func (c App) Platzi(user, messageType string) revel.Result {
