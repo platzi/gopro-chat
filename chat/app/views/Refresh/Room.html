@@ -26,7 +26,7 @@
       <div class="message notice">
         <h2></h2>
         <p>
-          {{.User}} Se unió al chat
+          {{.User}} dejó el chat
           </p>
       </div>
     {{end}}
@@ -34,7 +34,7 @@
 </div>
 
 <div id="newMessage">
-  <form method="post" action="/refresh/room?user={{.user}}">
+  <form method="post" action="/refresh/room/say?user={{.user}}">
     <input type="text" id="message" name="message" autocomplete="off" autofocus>
     <input type="submit" value="Enviar" id="send">
   </form>

@@ -27,6 +27,8 @@ func (c App) Platzi(user, messageType string) revel.Result {
 		return c.Redirect("/refresh?user=%s", user)
 	case "polling":
 		return c.Redirect("/polling/room?user=%s", user)
+	case "websocket":
+		return c.Redirect("/websocket/room?user=%s", user)
 	}
 
 	return c.Render()

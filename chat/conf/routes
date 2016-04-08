@@ -9,13 +9,16 @@ GET     /platzi                                 App.Platzi
 
 GET     /refresh                             Refresh.Index
 GET     /refresh/room                        Refresh.Room
-GET     /refresh/room/say                    Refresh.Say
+POST     /refresh/room/say                    Refresh.Say
 GET     /refresh/room/leave                  Refresh.Leave
 
-# GET     /polling/room                        Polling.Room
+GET     /polling/room                        Polling.Room
 GET     /polling/room/messages               Polling.WaitMessages
 POST    /polling/room/messages               Polling.Say
 GET     /polling/room/leave                  Polling.Leave
+
+GET    /websocket/room                      WebSocket.Room
+WS     /websocket/room/socket               WebSocket.RoomSocket
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

@@ -1,8 +1,11 @@
-{{set . "title" "Platzi chat"}}
+{{set . "title" "Chat room"}}
 {{template "header.html" .}}
 
-<h1>Mensaje con Refresh</h1>
-<div> Bienvenido {{.user}} <a href="/polling/room/leave?user={{.user}}">Dejar el chat</a></div>
+<h1>WebSocket </h1>
+<div>
+  — Bienvenido{{.user}}
+  <a href="/">dejar el chat</a>
+</div>
 
 <div id="thread">
   <script type="text/html" id="message_tmpl">
@@ -26,7 +29,15 @@
       <div class="message notice">
         <h2></h2>
         <p>
-          <%= event.User %> dejó el chat
+          <%= event.User %>
+        </p>
+      </div>
+    <% } %>
+    <% if(event.Type == 'quit') { %>
+      <div class="message important">
+        <h2></h2>
+        <p>
+          Ahora estás desconectado!
         </p>
       </div>
     <% } %>
@@ -40,14 +51,24 @@
 
 <script type="text/javascript">
 
-  var lastReceived = 0
-  var waitMessages = '/polling/room/messages?lastReceived='
-  var say = '/polling/room/messages?user={{.user}}'
+  // Create a socket
+  var socket = new WebSocket('ws://'+window.location.host+'/websocket/room/socket?user={{.user}}')
+
+  // Display a message
+  var display = function(event) {
+    $('#thread').append(tmpl('message_tmpl', {event: event}));
+    $('#thread').scrollTo('max')
+  }
+
+  // Message received on the socket
+  socket.onmessage = function(event) {
+    display(JSON.parse(event.data))
+  }
 
   $('#send').click(function(e) {
     var message = $('#message').val()
     $('#message').val('')
-    $.post(say, {message: message})
+    socket.send(message)
   });
 
   $('#message').keypress(function(e) {
@@ -57,27 +78,4 @@
     }
   })
 
-  // Retrieve new messages
-  var getMessages = function() {
-    $.ajax({
-      url: waitMessages + lastReceived,
-      success: function(events) {
-        $(events).each(function() {
-          display(this)
-          lastReceived = this.Timestamp
-        })
-        getMessages()
-      },
-      dataType: 'json'
-    });
-  }
-  getMessages();
-
-  // Display a message
-  var display = function(event) {
-    $('#thread').append(tmpl('message_tmpl', {event: event}));
-    $('#thread').scrollTo('max')
-  }
-
 </script>
-{{template "footer.html" .}}

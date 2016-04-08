@@ -16,15 +16,24 @@ func (c *Refresh) Index(user string) revel.Result {
 }
 
 func (c *Refresh) Room(user string) revel.Result {
-	// TODO: Lógica para identificar el usuario en el chat
-	return c.Render()
+	subscription := chat.Subscribe()
+	defer subscription.Cancel()
+	events := subscription.Archive
+	for i, _ := range events {
+		if events[i].User == user {
+			events[i].User = "tu"
+		}
+	}
+	return c.Render(user, events)
 }
 
-func (c *Refresh) Say() revel.Result {
-	// TODO: Lógica  para escribir el texto del usuario
-	return c.Render()
+func (c *Refresh) Say(user, message string) revel.Result {
+	revel.INFO.Printf("Usuario: %v message: %v", user, message)
+	chat.Say(user, message)
+	return c.Redirect(routes.Refresh.Room(user))
 }
-func (c *Refresh) Leave() revel.Result {
-	// TODO: Lógica para dejar el salón
-	return c.Render()
+
+func (c *Refresh) Leave(user string) revel.Result {
+	chat.Leave(user)
+	return c.Redirect(App.Index)
 }
